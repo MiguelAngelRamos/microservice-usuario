@@ -1,6 +1,7 @@
 package com.kibernumacademy.user.service.impl;
 
 import com.kibernumacademy.user.entity.User;
+import com.kibernumacademy.user.exceptions.ResourceNotFoundException;
 import com.kibernumacademy.user.repository.IUserRepository;
 import com.kibernumacademy.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements IUserService {
+
   @Autowired
   private IUserRepository userRepository;
   @Override
