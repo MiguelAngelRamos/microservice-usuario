@@ -1,6 +1,6 @@
 package com.kibernumacademy.user.controllers;
 
-import com.kibernumacademy.user.entity.User;
+import com.kibernumacademy.user.entities.User;
 import com.kibernumacademy.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

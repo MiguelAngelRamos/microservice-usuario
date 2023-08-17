@@ -1,6 +1,6 @@
 package com.kibernumacademy.user.service;
 
-import com.kibernumacademy.user.entity.User;
+import com.kibernumacademy.user.entities.User;
 
 import java.util.List;
 

@@ -1,14 +1,13 @@
-package com.kibernumacademy.user.entity;
+package com.kibernumacademy.user.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,5 +25,8 @@ public class User {
   private String email;
   @Column(name="information")
   private String information;
+
+  @Transient // indicamos que no se va persistir en la base de datos.
+  private List<Rating> ratings = new ArrayList<>();
 
 }
