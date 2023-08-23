@@ -44,30 +44,26 @@ public class UserServiceImpl implements IUserService {
     return userRepository.findAll();
   }
 
-
   /* Implementación RestTemplate Feign*/
-  @Override
   public User getUser(String userId) {
+
     User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + userId));
     // Comenzamos hacer el llamado con RestTemplate
     Rating[] ratingsUser = restTemplate.getForObject("http://CALIFICACION-SERVICE/ratings/users/" + user.getUserId(), Rating[].class);
 
     logger.info("{}", ratingsUser[0]);
 
-    List<Rating> ratings = Arrays.stream(ratingsUser).collect(Collectors.toList());
-
-    List<Rating> listRatings = ratings.stream().map(rating -> {
-
-      // Aquí, hacemos una petición usando IHotelService.
-      // Feign, un cliente declarativo, permite realizar llamadas a servicios web mediante interfaces.
-      // Esto es una manifestación del patrón de inversión de dependencias, donde definimos cómo queremos llamar a un servicio, pero no su implementación.
+    List<Rating> listRatings = Arrays.stream(ratingsUser).map(rating -> {
+      logger.info("Hotel ID: {}", rating.getHotelId());
       Hotel hotel = hotelService.getHotel(rating.getHotelId());
-
+      logger.info("Id-hotel: {}", hotel.getId());
+      logger.info("El Hotel: {}", hotel);
       rating.setHotel(hotel);
       return rating;
     }).collect(Collectors.toList());
 
     user.setRatings(listRatings);
+
     return user;
   }
 

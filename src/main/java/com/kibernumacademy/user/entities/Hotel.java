@@ -15,4 +15,14 @@ public class Hotel {
   private String name;
   private String information;
   private String location;
+
+  @Override
+  public String toString() {
+    return "Hotel{" +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
+            ", information='" + information + '\'' +
+            ", location='" + location + '\'' +
+            '}';
+  }
 }
